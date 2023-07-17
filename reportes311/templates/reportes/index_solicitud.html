@@ -1,0 +1,75 @@
+<!-- extiende del archivo base-->
+{% extends 'base.html' %}
+
+
+{% block titulo %} Lista de Solicitudes 311 {% endblock %}
+
+{% block contenido %} 
+  
+<!-- bs5-card-head-foor -->
+  <div class="card">
+    <div class="card-header">
+        <!-- bs5-button-a        href es la url de la fiuncion-->
+
+        <a name="" id="" class="btn btn-success" href="{% url 'crear' %}" role="button">Agregar Solicitud 311</a>
+
+        
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">SOLICITUDES</h4>
+        <!-- bs5-card-head-foor -->
+        
+        
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>ID Solicitud</th>
+                        <th>Fecha Solicitud</th>
+                        <th>IdUsuario</th>
+                        <th>Descripción</th>
+                        <th>Foto Ubicación</th>
+                        <th>Direccion de  Inciente</th>
+                        <th>Status</th>
+                        <th>ID Seguimiento</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <!-- se realiza un ciclo for para repetir todos las solicitudes -->
+                    {% for solicitud in solicitudes %}
+                    <tr>
+                        <th>{{ solicitud.id }}</th>
+                        <th>{{ solicitud.idSolicitud }}</th>
+                        <th>{{ solicitud.fechaSolicitud }}</th>
+                        <th>{{ solicitud.idUsuario }}</th>
+                        <th>{{ solicitud.descripcion }}</th>
+                         
+                        <!-- muestra el formato de la url de la foto(imagen) se mostarar en una img-->
+                        <th>
+                        
+                            <img src="{{ solicitud.fotoUbicacion.url }}" height="100"/>
+                                               
+                        </th>
+
+                        <th>{{ solicitud.direccionIncidente }}</th>
+                        <th>{{ solicitud.status }}</th>
+                        <th>{{ solicitud.idSeguimiento }}</th>
+                        <!-- se cambia las aciones Editar/borar por botones con bs5-button-a -->
+                        <th>
+                            <a name="" id="" class="btn btn-info" href="{% url 'editar' solicitud.id %}"
+                              role="button">Editar</a> 
+                            /
+                            <a name="" id="" class="btn btn-danger" href="{% url 'eliminar' solicitud.id %}" 
+                              role="button">Borrar</a>
+                        </th>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+    </div>
+    
+  </div>
+
+{% endblock %}

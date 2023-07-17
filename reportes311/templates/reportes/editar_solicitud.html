@@ -1,0 +1,26 @@
+<!-- extiende del archivo base-->
+{% extends 'base.html' %}
+
+
+{% block titulo %} EDITAR UNSOLICITUD 311 {% endblock %}
+
+{% block contenido %} 
+
+<!--   bs5-card-head-foor -->
+
+<div class="card">
+    <div class="card-header">
+        Edicion Información de Solicitud 311
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">Datos de la Solicitud</h4>
+        
+        {% include 'reportes/form.html' %}
+
+    </div>
+    <div class="card-footer text-muted">
+        Footer
+    </div>
+</div>
+
+{% endblock %}
