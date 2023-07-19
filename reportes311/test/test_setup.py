@@ -32,8 +32,10 @@ class TestSetup(APITestCase):
             self.url,
            # self.login_url, 
             {
-               'username': self.user.username,
-               'password': 'developer',
+                'username': 'developer',
+                'password': 'developer',
+              # 'username': self.user.username,
+               #'password': 'developer',
                 
             }, 
             format='json'
