@@ -54,3 +54,4 @@ def eliminar(request, id):
     solicitud.delete()
     return redirect('solicitudes')
     # return render(request, "reportes/eliminar_solicitud.html")
+    

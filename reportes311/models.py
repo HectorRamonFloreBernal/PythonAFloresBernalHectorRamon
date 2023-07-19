@@ -13,6 +13,7 @@ class Solicitud(models.Model):
     status = models.CharField(max_length=20)
     idSeguimiento = models.IntegerField(null=True)
     
+    
     def __str__(self):
          fila = "No Solicitud: "  + str(self.idSolicitud) + " / Fecha:  " + str(self.fechaSolicitud) + " /  No Usuario: " + str(self.idUsuario) +  " / Descipcion: " + str(self.descripcion) + " / Ubiación: " + str(self.fotoUbicacion) + " / Dirección: " + str(self.direccionIncidente) + " / Estatus:  " + str(self.status) + " / No Seguimeinto:  " + str(self.idSeguimeinto)
          return fila
