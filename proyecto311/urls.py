@@ -19,7 +19,11 @@ from django.urls import path
 # URLS de la aplicación reportes311
 from django.urls import include
 
+# importa el uso de longin de django
+from django.contrib.auth.views import LoginView, logout_then_login
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('reportes311.urls'))
+    path('', include('reportes311.urls')),
+   # path('',LoginView,{'template_name':'login.html'}, name ='login'),
 ]

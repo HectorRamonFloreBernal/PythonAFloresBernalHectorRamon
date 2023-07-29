@@ -3,10 +3,10 @@ from django.db import models
 
 # Create your models here.
 class Solicitud(models.Model):
-    id= models.AutoField(primary_key=True)
     idSolicitud = models.IntegerField(verbose_name="Id Solicitud")
     fechaSolicitud = models.DateTimeField()
-    idUsuario = models.IntegerField()
+    idUsuario = models.CharField(verbose_name="Descipción", max_length=100)
+   # idUsuario = models.IntegerField()
     descripcion = models.CharField(verbose_name="Descipción", max_length=200)
     fotoUbicacion= models.ImageField(upload_to='imagenes/', null=True)
     direccionIncidente = models.CharField( max_length=100)
@@ -21,3 +21,14 @@ class Solicitud(models.Model):
     def delete(self, using=None, keep_parents=False):
         self.fotoUbicacion.storage.delete(self.fotoUbicacion.name)
         super().delete()
+        
+class Seguimiento(models.Model):
+   # idSeguimiento = models.AutoField(primary_key=True)
+    idSolicitud = models.ForeignKey(Solicitud,on_delete=models.CASCADE,related_name="FK_Solicitud_Seguimiento")
+    idUsuario = models.CharField(verbose_name="Descipción", max_length=100)
+    fechaSeguimiento = models.DateTimeField()
+    descripcionSeguimiento = models.CharField(verbose_name="Descipción", max_length=200)
+    
+    def __str__(self):
+         fila = " / Usuario:  " + str(self.idUsuario) + " / Fecha:  " + str(self.fechaSeguimiento) +  " / Descipcion: " + str(self.descripcionSeguimiento)
+         return fila

@@ -37,7 +37,7 @@ class TestSetup(APITestCase):
               # 'username': self.user.username,
                #'password': 'developer',
                 
-            }, 
+            }
             format='json'
                 
         )
