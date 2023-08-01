@@ -1,0 +1,61 @@
+<!-- extiende del archivo base-->
+{% extends 'base.html' %}
+
+
+{% block titulo %} Lista de Seguimientos 311 {% endblock %}
+
+{% block contenido %} 
+  
+<!-- bs5-card-head-foor -->
+  <div class="card">
+    <div class="card-header">
+        <!-- bs5-button-a        href es la url de la fiuncion-->
+
+        <a name="" id="" class="btn btn-success" href="#" role="button">Agregar Seguimiento 311</a>
+
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">SEGUIMIENTO</h4>
+        <!-- bs5-card-head-foor -->
+        
+        
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>ID Usuario</th>
+                        <th>ID Solicitud</th>
+                        <th>Fecha Seguimiento</th>
+                        <th>Descripción</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <!-- se realiza un ciclo for para repetir todos las Seguimiento -->
+                    {% for seguimiento in Seguimientos %}
+                    <tr>
+                        <th>{{ seguimiento.id }}</th>
+                        <th>{{ seguimiento.idUsuario }}</th>
+                        <th>{{ seguimiento.idSolicitud }}</th>
+                        <th>{{ seguimiento.fechaSeguimiento }}</th>
+                        <th>{{ seguimiento.descripcionSeguimiento }}</th>
+                         
+        
+                        <!-- se cambia las aciones Editar/borar por botones con bs5-button-a -->
+                        <th>
+                            <a name="" id="" class="btn btn-info" href="#"
+                              role="button">Editar</a> 
+                            /
+                            <a name="" id="" class="btn btn-danger" href="#" 
+                              role="button">Borrar</a>
+                        </th>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+    </div>
+    
+  </div>
+
+{% endblock %}

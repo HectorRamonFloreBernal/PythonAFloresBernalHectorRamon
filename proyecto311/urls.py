@@ -25,5 +25,4 @@ from django.contrib.auth.views import LoginView, logout_then_login
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('reportes311.urls')),
-   # path('',LoginView,{'template_name':'login.html'}, name ='login'),
 ]

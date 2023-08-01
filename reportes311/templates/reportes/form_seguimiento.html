@@ -1,0 +1,47 @@
+<form enctype="multipart/form-data" method="post">
+
+    <!--  se incluye el token de seguridad de django para validar el formulario -->
+    {% csrf_token %}
+    
+    <!--  se recorre el formulario para mostrar los campos -->
+    {% for campo in formulario %}
+       <!-- bs5-input-sizing  para  etiquetas del CRUD --> 
+       <!-- en  form-laber se le asigana campo.label para asiganar la etiqueta del Modelo -->
+       <!-- en  type se le asigana campo.field}.widget.input-type para asiganar tipo de campo -->
+       
+      <div class="mb-3">
+         <label for="" class="form-label">{{ campo.label }}</label>
+           
+         <input 
+           type="{{ campo.field.widget.input_type }}"
+           class="form-control" 
+           name="{{ campo.name }}" 
+           id="" 
+           aria-describedby="helpId" 
+           placeholder="{{ campo.label }}" 
+           value="{{ campo.value | default_if_none:'' }}"
+           
+           
+           />
+          
+          </div> 
+          <div class="col-12 help-text"> {{campo.errors}} </div>
+      {% endfor %}
+    
+      <!--bs5-button-input-->
+      
+       <input name="" id="" class="btn btn-success" type="submit" value="Enviar Información">
+    
+        <a name="" id="" class="btn btn-primary" href="{% url 'Seguimientos' %}" role="button">Cancelar</a>
+    </form>   
+       
+       
+       
+       
+       
+       
+    
+    
+    
+    
+    

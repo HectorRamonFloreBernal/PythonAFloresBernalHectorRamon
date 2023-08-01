@@ -15,6 +15,11 @@ urlpatterns = [
     path('', views.inicio, name='inicio'),
     path('nosotros', views.nosotros, name='nosotros'),
     
+# interfaces de creacion de seguimiento
+    path('seguimientos/index', views.seguimiento, name='seguimiento'),
+    path('seguimientos/crearSeguimiento', views.crearSeguimiento, name='crearSeguimiento'),
+                                    
+    
 # interfaces de creacion de solicitudes   
 # nombres de las urls para cada interfaz  "solicitudes", "crear", "editar
     path('solicitudes/index', views.solicitudes, name='solicitudes'),

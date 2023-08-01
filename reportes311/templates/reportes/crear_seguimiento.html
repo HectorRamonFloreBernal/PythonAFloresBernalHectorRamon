@@ -1,0 +1,27 @@
+<!-- extiende del archivo base-->
+{% extends 'base.html' %}
+
+
+{% block titulo %} AGREGAR UN NUEVO SEGUIMIENTO 311 {% endblock %}
+
+{% block contenido %} 
+<!--   bs5-card-head-foor -->
+
+<div class="card">
+    <div class="card-header">
+        Crear un Nuevo Seguimiento  311
+    </div>
+    <div class="card-body">
+        <h4 class="card-title">Datos del Seguimeinto</h4>
+        
+        {% include 'reportes/form_seguimiento.html' %}
+
+    </div>
+    <div class="card-footer text-muted">
+        Footer
+    </div>
+</div>
+
+
+
+{% endblock %}

@@ -2,10 +2,10 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
 # importar el modelo de la calse Solicitud de models.py
-from  .models import Solicitud
+from  .models import Solicitud, Seguimiento
 
 # importa los formularios de django de solicitdForm
-from .forms import SolicitudForm
+from .forms import SolicitudForm, SeguimientoForm
 
 
 # Create your views here.
@@ -25,6 +25,9 @@ def solicitudes(request):
     # print(solicitudes)
     # manda solocitudes a la plantilla index_solicitud.html
     return render(request, "reportes/index_solicitud.html", {"solicitudes":solicitudes})
+
+
+
 
 
 # funcion vista para la pagina de crear solicitud
@@ -55,3 +58,31 @@ def eliminar(request, id):
     return redirect('solicitudes')
     # return render(request, "reportes/eliminar_solicitud.html")
     
+# ---------------------  seguimiento
+
+def seguimiento(request):
+    # obtener todas los seguimientos de la base de datos
+    seguimiento = Seguimiento.objects.all()
+    return render(request, "reportes/index_seguimiento.html", {"seguimiento":seguimiento})
+
+
+
+def solicitudes(request):
+   
+    solicitudes = Solicitud.objects.all()
+    # print(solicitudes)
+    # manda solocitudes a la plantilla index_solicitud.html
+    return render(request, "reportes/index_solicitud.html", {"solicitudes":solicitudes})
+
+
+
+
+def crearSeguimiento(request):
+    # crea un formulario vacio para que el usuario lo llene y despues validar si es correcto
+    seguimiento= SeguimientoForm(request.POST or None, request.FILES or None)
+    if seguimiento.is_valid():
+        # guarda el formulario en la base de datos
+        seguimiento.save()
+        # redirecciona a la pagina de solicitudes
+        return redirect('seguimiento')        
+    return render(request, "reportes/crear_seguimiento.html", {'seguimiento':seguimiento})
