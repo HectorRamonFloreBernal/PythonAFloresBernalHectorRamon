@@ -17,6 +17,7 @@ def inicio(request):
 def nosotros(request):
     return render(request, "paginas/nosotros.html")
 
+
 # funcion vista para la pagina de Solicitudes
 # que permite mostrar todas las solicitudes de la base de datos
 def solicitudes(request):
@@ -25,7 +26,6 @@ def solicitudes(request):
     # print(solicitudes)
     # manda solocitudes a la plantilla index_solicitud.html
     return render(request, "reportes/index_solicitud.html", {"solicitudes":solicitudes})
-
 
 
 
@@ -67,22 +67,18 @@ def seguimiento(request):
 
 
 
-def solicitudes(request):
-   
-    solicitudes = Solicitud.objects.all()
-    # print(solicitudes)
-    # manda solocitudes a la plantilla index_solicitud.html
-    return render(request, "reportes/index_solicitud.html", {"solicitudes":solicitudes})
 
 
 
 
-def crearSeguimiento(request):
+
+# funcion vista para la pagina de crear solicitud
+def crearSeg(request):
     # crea un formulario vacio para que el usuario lo llene y despues validar si es correcto
-    seguimiento= SeguimientoForm(request.POST or None, request.FILES or None)
-    if seguimiento.is_valid():
+    formulario1 = SeguimientoForm(request.POST or None, request.FILES or None)
+    if formulario1.is_valid():
         # guarda el formulario en la base de datos
-        seguimiento.save()
+        formulario1.save()
         # redirecciona a la pagina de solicitudes
         return redirect('seguimiento')        
-    return render(request, "reportes/crear_seguimiento.html", {'seguimiento':seguimiento})
+    return render(request, "reportes/crear_seg.html", {'formulario1':formulario1})
