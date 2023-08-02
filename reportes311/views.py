@@ -27,9 +27,6 @@ def solicitudes(request):
     # manda solocitudes a la plantilla index_solicitud.html
     return render(request, "reportes/index_solicitud.html", {"solicitudes":solicitudes})
 
-
-
-
 # funcion vista para la pagina de crear solicitud
 def crear(request):
     # crea un formulario vacio para que el usuario lo llene y despues validar si es correcto
@@ -60,17 +57,10 @@ def eliminar(request, id):
     
 # ---------------------  seguimiento
 
-def seguimiento(request):
+def seguimientos(request):
     # obtener todas los seguimientos de la base de datos
     seguimiento = Seguimiento.objects.all()
     return render(request, "reportes/index_seguimiento.html", {"seguimiento":seguimiento})
-
-
-
-
-
-
-
 
 # funcion vista para la pagina de crear solicitud
 def crearSeg(request):
@@ -82,3 +72,12 @@ def crearSeg(request):
         # redirecciona a la pagina de solicitudes
         return redirect('seguimiento')        
     return render(request, "reportes/crear_seg.html", {'formulario1':formulario1})
+
+# funcion vista para la pagina de editar solicitud
+def editarSeg(request, id):
+    seguimiento = Seguimiento.objects.get(id=id)
+    formulario1 = SeguimientoForm(request.POST or None, request.FILES or None, instance=seguimiento)
+    if formulario1.is_valid() and request.POST:
+        formulario1.save()
+        return redirect('seguimiento')
+    return render(request, "reportes/editar_seg.html", {'formulario1':formulario1})
