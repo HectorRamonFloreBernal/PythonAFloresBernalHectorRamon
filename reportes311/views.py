@@ -44,9 +44,14 @@ def crear(request):
         return redirect('solicitudes')        
     return render(request, "reportes/crear_solicitud.html", {'formulario':formulario})
 
-
-
-
+# funcion vista para la pagina de editar solicitud
+def editar(request, id):
+    solicitud = Solicitud.objects.get(id=id)
+    formulario = SolicitudForm(request.POST or None, request.FILES or None, instance=solicitud)
+    if formulario.is_valid() and request.POST:
+        formulario.save()
+        return redirect('solicitudes')
+    return render(request, "reportes/editar_solicitud.html", {'formulario':formulario})
 
 
 # funcion vista para la pagina de eliminar solicitud
@@ -54,6 +59,13 @@ def eliminar(request, id):
     solicitud = Solicitud.objects.get(id=id)
     solicitud.delete()
     return redirect('solicitudes')
+    
+
+# funcion vista para la pagina de eliminar solicitud
+#def eliminar(request, id):
+#    solicitud = Solicitud.objects.get(id=id)
+#    solicitud.delete()
+#    return redirect('solicitudes')
     # return render(request, "reportes/eliminar_solicitud.html")
     
 # ---------------------  seguimiento  ----------------------------------------------
@@ -84,12 +96,12 @@ def editarSeg(request, id):
         return redirect('seguimiento')
     return render(request, "reportes/editar_seg.html", {'formulario':formulario})
 
+# funcion vista para la pagina de eliminar solicitud
+def eliminarSeg(request, id):
+    seguimiento = Seguimiento.objects.get(id=id)
+    seguimiento.delete()
+    return redirect('seguimientos')
+   
+    
 #--------------------------------------------------------------------
-# funcion vista para la pagina de editar solicitud
-def editar(request, id):
-    solicitud = Solicitud.objects.get(id=id)
-    formulario = SolicitudForm(request.POST or None, request.FILES or None, instance=solicitud)
-    if formulario.is_valid() and request.POST:
-        formulario.save()
-        return redirect('solicitudes')
-    return render(request, "reportes/editar_solicitud.html", {'formulario':formulario})
+
