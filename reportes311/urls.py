@@ -17,14 +17,13 @@ urlpatterns = [
     
 # interfaces de creacion de seguimiento
     path('seguimientos/index', views.seguimientos, name='seguimientos'),
-    path('seguimientos/crear', views.crearSeg, name='crearSeguimiento'),  
-    path('seguimientos/editar', views.editarSeg, name='editarSegumiento'),                             
+    path('seguimientos/crear', views.crearSeg, name='crearSeguimiento'),    
+    path('seguimientos/editar/<int:id>', views.editarSeg, name='editarSeguimiento'),                    
     
 # interfaces de creacion de solicitudes   
 # nombres de las urls para cada interfaz  "solicitudes", "crear", "editar
     path('solicitudes/index', views.solicitudes, name='solicitudes'),
     path('solicitudes/crear', views.crear, name='crear'),
-    path('solicitudes/editar', views.editar, name='editar'),
     path('eliminar/<int:id>', views.eliminar, name='eliminar'),
     path('solicitudes/editar/<int:id>', views.editar, name='editar'),
     
