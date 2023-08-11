@@ -1,26 +1,32 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 
-# importar el modelo de la calse Solicitud de models.py
+# Importar el modelo del logion de django
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import logout
+
+# Importar el modelo de la calse Solicitud de models.py
 from  .models import Solicitud, Seguimiento
 
-# importa los formularios de django de solicitdForm
+# Importa los formularios de django de solicitdForm
 from .forms import SolicitudForm, SeguimientoForm
-
 
 # Create your views here.
 
-# funcion vista para la pagina de inicio
+# Funcion vista para la pagina de inicio
+# Oculta la vista, hasta que un usuario valido inicie cencion 
+@login_required
 def inicio(request):
     return render(request, "paginas/inicio.html")
+
 # funcion vista para la pagina de nosotros
 def nosotros(request):
     return render(request, "paginas/nosotros.html")
 
 # -----------------  Solicitudes ----------------------------------------------
 
-# funcion vista para la pagina de Solicitudes
-# que permite mostrar todas las solicitudes de la base de datos
+# Funcion vista para la pagina de Solicitudes
+# Que permite mostrar todas las solicitudes de la base de datos
 
 def solicitudes(request):
     # obtener todas las solicitudes de la base de datos
@@ -28,12 +34,7 @@ def solicitudes(request):
     # manda solocitudes a la plantilla index_solicitud.html
     return render(request, "reportes/index_solicitud.html", {"solicitudes":solicitudes})
 
-
-
-
-
-
-# funcion vista para la pagina de crear solicitud
+# Funcion vista para la pagina de crear solicitud
 def crear(request):
     # crea un formulario vacio para que el usuario lo llene y despues validar si es correcto
     formulario = SolicitudForm(request.POST or None, request.FILES or None)
@@ -44,7 +45,7 @@ def crear(request):
         return redirect('solicitudes')        
     return render(request, "reportes/crear_solicitud.html", {'formulario':formulario})
 
-# funcion vista para la pagina de editar solicitud
+# Funcion vista para la pagina de editar solicitud
 def editar(request, id):
     solicitud = Solicitud.objects.get(id=id)
     formulario = SolicitudForm(request.POST or None, request.FILES or None, instance=solicitud)
@@ -53,30 +54,20 @@ def editar(request, id):
         return redirect('solicitudes')
     return render(request, "reportes/editar_solicitud.html", {'formulario':formulario})
 
-
-# funcion vista para la pagina de eliminar solicitud
+# Funcion vista para la pagina de eliminar solicitud
 def eliminar(request, id):
     solicitud = Solicitud.objects.get(id=id)
     solicitud.delete()
     return redirect('solicitudes')
     
-
-# funcion vista para la pagina de eliminar solicitud
-#def eliminar(request, id):
-#    solicitud = Solicitud.objects.get(id=id)
-#    solicitud.delete()
-#    return redirect('solicitudes')
-    # return render(request, "reportes/eliminar_solicitud.html")
-    
 # ---------------------  seguimiento  ----------------------------------------------
-
 
 def seguimientos(request):
     # obtener todas los seguimientos de la base de datos
     seguimientos = Seguimiento.objects.all()
     return render(request, "reportes/index_seguimiento.html", {"seguimientos":seguimientos})
 
-# funcion vista para la pagina de crear solicitud
+# Funcion vista para la pagina de crear solicitud
 def crearSeg(request):
     # crea un formulario vacio para que el usuario lo llene y despues validar si es correcto
     formulario = SeguimientoForm(request.POST or None, request.FILES or None)
@@ -87,7 +78,7 @@ def crearSeg(request):
         return redirect('seguimiento')        
     return render(request, "reportes/crear_seg.html", {'formulario':formulario})
 
-# funcion vista para la pagina de editar solicitud
+# Funcion vista para la pagina de editar solicitud
 def editarSeg(request, id):
     seguimiento = Seguimiento.objects.get(id=id)
     formulario = SeguimientoForm(request.POST or None, request.FILES or None, instance=seguimiento)
@@ -96,12 +87,14 @@ def editarSeg(request, id):
         return redirect('seguimiento')
     return render(request, "reportes/editar_seg.html", {'formulario':formulario})
 
-# funcion vista para la pagina de eliminar solicitud
+# Funcion vista para la pagina de eliminar solicitud
 def eliminarSeg(request, id):
     seguimiento = Seguimiento.objects.get(id=id)
     seguimiento.delete()
     return redirect('seguimientos')
-   
-    
+      
 #--------------------------------------------------------------------
 
+def salir(request):
+    logout(request)
+    return redirect('/')
