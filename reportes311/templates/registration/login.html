@@ -3,22 +3,92 @@
 <head>
     <meta charset="UTF-8">
     <title>Inicio de Seccion Reporte 3-1-1</title>
+    <style>
+      html{
+        font-size:12px;
+      }
+
+      #titulo{
+        width:40%;
+        background-color:silver;
+        color:blue;
+        margin:15px auto;
+        padding:10px;
+        text-align:center;
+        font-size:2rem;
+        border-radius:10px;
+      }
+
+      #contenedor{
+        width:40%;
+        margin: 10px auto; 
+        background-color:silver; 
+        padding:15PX;
+        border-radius:10px;
+        align-items: center;
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        grid-gap:10px;  
+        grid-template-areas: "lblUno    txtUsuario"
+                              "lblDos    txtPass"
+                              "procesar  procesar"; 
+      }
+
+
+
+      #lbl_usuario{
+        grid-area: lblUno;
+        color:red;
+      }
+      #lbl_pass{
+        grid-area: lblDos;
+        color:red;
+      }    
+      
+      #usuario{
+        grid-area: txtUsuario;
+      }
+      #pass{
+        grid-area: txtPass;
+      }
+
+      #procesar{
+        grid-area:procesar;
+      }
+      input{
+        font-size:1.5rem;
+        background-color: yellow;
+      }
+
+
+      input:focus {
+        color: white;
+      }
+
+      input:hover{
+        background-color: green;
+        color: white;
+      }
+      label{
+        font-size:1.5rem;
+      }
+      button{
+        margin:5px auto;
+      }
+    </style>
 </head>
 <body>
     
-   <p> Inicio de Seccion requerido </p>
-   <form method="post">
-     {% csrf_token %}
-      <label for="usuario">
-        usuario
-        <input type="text" name="username">
-      </label>
-      <label for="pass">
-        contraseña
-        <input type="password" name="password">
-      </label>
-      <button type="submit">Iniciar Sección</button>
-    </form>
-
+   <p id='titulo'> Inicio de Seccion requerido </p>
+   <!--<div id='contenedor'>-->
+    <form method="post" id='contenedor'>
+      {% csrf_token %}
+        <label for="usuario" id='lbl_usuario'>USUARIO</label>
+        <input type="text" name="username" id='usuario'>
+        <label for="pass" id='lbl_pass'>CONTRASEÑA</label>
+        <input type="password" name="password" id='pass'>
+        <button type="submit" id'procesar'>Iniciar Sección</button>
+      </form>
+    <!--</div>-->
 </body>
 </html>
