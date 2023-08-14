@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Inicio de Seccion Reporte 3-1-1</title>
-
-  <!--  <link rel="stylesheet" href= "login.css">  -->
-  <style>
+<style>
     html{
       font-size:12px;
     }
@@ -40,11 +33,11 @@
 
     #lbl_usuario{
       grid-area: lblUno;
-      color:black;
+      color:red;
     }
     #lbl_pass{
       grid-area: lblDos;
-      color:black;
+      color:red;
     }    
     
     #usuario{
@@ -68,8 +61,8 @@
     }
 
     input:hover{
-      background-color: write;
-      color: black;
+      background-color: green;
+      color: white;
     }
     label{
       font-size:1.5rem;
@@ -78,20 +71,4 @@
       margin:5px auto;
     }
   </style>
-
-</head>
-<body>
-    
-   <p id='titulo'> Inicio de Seccion requerido </p>
-   <!--<div id='contenedor'>-->
-    <form method="post" id='contenedor'>
-      {% csrf_token %}
-        <label for="usuario" id='lbl_usuario'>USUARIO</label>
-        <input type="text" name="username" id='usuario'>
-        <label for="pass" id='lbl_pass'>CONTRASEÑA</label>
-        <input type="password" name="password" id='pass'>
-        <button type="submit" id'procesar'>Iniciar Sección</button>
-      </form>
-    <!--</div>-->
-</body>
-</html>
+  
