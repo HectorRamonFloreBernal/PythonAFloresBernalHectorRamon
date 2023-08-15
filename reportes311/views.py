@@ -13,12 +13,14 @@ from .forms import SolicitudForm, SeguimientoForm
 
 # Create your views here.
 
+#------------------ funcion para iniciara usuario previo a inicio -------------
 # Funcion vista para la pagina de inicio
 # Oculta la vista, hasta que un usuario valido inicie cencion 
 @login_required
 def inicio(request):
     return render(request, "paginas/inicio.html")
 
+#------------------- funcion nosotros -----------------------------------------
 # funcion vista para la pagina de nosotros
 def nosotros(request):
     return render(request, "paginas/nosotros.html")

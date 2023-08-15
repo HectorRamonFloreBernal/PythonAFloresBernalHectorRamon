@@ -37,21 +37,3 @@ class Seguimiento(models.Model):
          fila = "Usuario: " + str(self.idUsuario) + " / Solicitud:  " + str(self.idSolicitud) + " / Fecha:  " + str(self.fechaSeguimiento) +  " / Descipcion: " + str(self.descripcionSeguimiento)
          return fila
     
-    # idSeguimiento = models.AutoField(primary_key=True)
-    # idSolicitud = models.ForeignKey(Solicitud,on_delete=models.CASCADE,related_name="FK_Solicitud_Seguimiento")
-    
-    
-    
-    
-    #--------------- usuario
-    
-#class Usuario(AbstractBaseUser, PermissionsMixin):
- #       username = models.CharField('Nombre de Usuario', unique = True, max_length = 100)
-  #      email = models.CharField('Correo Electronico', max_length = 254, unique = True)
-   #     nombres= models.CharField('Nombres', max_length = 200, blank=True, null = True)
-    #    apellidos= models.CharField('Apellidos', max_length = 200, blank=True, null = True)
-    #    rol= models.CharField(Rol, on_delete=models.CASCADE, blank=True, null = True)
-     #   imagen= models.ImagenField('Imagen de Perfil', upload_to='perfil/', max_length = 200, blank=True, null = True)
-      #  is_active = models.BooleanField(default= True)
-       # is_staff = models.BooleanField(default= False)
-       # objets = UsuarioManager()
