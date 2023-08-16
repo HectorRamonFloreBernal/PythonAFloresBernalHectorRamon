@@ -86,7 +86,7 @@ def editarSeg(request, id):
     formulario = SeguimientoForm(request.POST or None, request.FILES or None, instance=seguimiento)
     if formulario.is_valid() and request.POST:
         formulario.save()
-        return redirect('seguimiento')
+        return redirect('seguimientos')
     return render(request, "reportes/editar_seg.html", {'formulario':formulario})
 
 # Funcion vista para la pagina de eliminar solicitud
