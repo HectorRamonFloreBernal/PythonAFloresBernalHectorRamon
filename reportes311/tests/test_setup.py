@@ -35,9 +35,9 @@ class TestSetup(APITestCase):
         )
         
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        
-       # self.token = response.data['token']
-       # self.client.credential(HTTP_AUTHORIZATION='Bearer ' + self.token)
+        import pdb; pdb.set_trace()
+        #self.token = response.data['token']
+        #self.client.credential(HTTP_AUTHORIZATION='Bearer ' + self.token)
         return super().setUp()
     
     def test_prueba(self):
