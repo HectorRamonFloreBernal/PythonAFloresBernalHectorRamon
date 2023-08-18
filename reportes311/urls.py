@@ -14,8 +14,7 @@ urlpatterns = [
     
     path('', views.inicio, name='inicio'),
     path('nosotros', views.nosotros, name='nosotros'),
-    
- #   path('salir/', views.salir, name="salir"),
+    path('salir/', views.salir, name="salir"),
     
 # interfaces de creacion de seguimiento
     path('seguimientos/index', views.seguimientos, name='seguimientos'),
